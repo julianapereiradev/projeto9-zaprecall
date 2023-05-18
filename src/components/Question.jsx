@@ -4,7 +4,7 @@ import setavirar from "../assets/seta_virar.png";
 import { useState } from "react";
 
 export default function Question(props) {
-  const { id, question, answer } = props;
+  const { id, question, answer, contagem, setContagem } = props;
   const [displayTela1, setDisplayTela1] = useState(true);
   const [displayTela2, setDisplayTela2] = useState(false);
   const [displayTela3, setDisplayTela3] = useState(false);
@@ -48,13 +48,20 @@ export default function Question(props) {
 
   if (displayTela3 === true) {
     return (
-      <div style={{ backgroundColor: "yellow", border: "4px solid black" }}>
-        <p>{`Questao de numero ${id}`}</p>
-        <p>{` A Resposta é: ${answer}`}</p>
-        <button onClick={() => TheSituationButtons(id)}>errei</button>
-        <button onClick={() => TheSituationButtons(id)}>acertei em parte</button>
-        <button onClick={() => TheSituationButtons(id)}>acertei</button>
-      </div>
+      <STContainerTheAnswer>
+        <STTheAnswerParagraph>{answer}</STTheAnswerParagraph>
+        <STDivButtonSituation>
+          <STButtonSituation1 onClick={() => TheSituationButtons(id)}>
+            Não lembrei
+          </STButtonSituation1>
+          <STButtonSituation2 onClick={() => TheSituationButtons(id)}>
+            Quase não lembrei
+          </STButtonSituation2>
+          <STButtonSituation3 onClick={() => TheSituationButtons(id)}>
+            Zap!
+          </STButtonSituation3>
+        </STDivButtonSituation>
+      </STContainerTheAnswer>
     );
   }
 
@@ -64,19 +71,26 @@ export default function Question(props) {
     setDisplayTela2(false);
     setDisplayTela3(false);
     setDisplayTela4(true);
-    //colocar um set erros aqui
+    let total = contagem + 1;
+    setContagem(total);
   }
 
   if (displayTela4 === true) {
     return (
-      <div style={{ backgroundColor: "green", border: "4px solid black" }}>
-        <p>{`PERGUNTA É dDE NUMERO${id}`}</p>
+      <div
+        style={{
+          backgroundColor: "white",
+          border: "4px solid black",
+          width: "500px",
+          height: "70px",
+        }}
+      >
+        <p>{`PERGUNTA DE NUMERO ${id} AQUI`}</p>
         <p>Colocar que aumentou numero </p>
         <p>Colocar que fica riscado </p>
       </div>
     );
   }
-
 }
 
 const STContainerItemQuestion = styled.div`
@@ -142,4 +156,66 @@ const STButtonSetaVirar = styled.button`
 const STImageVirar = styled.img`
   width: 20px;
   margin: 20px;
+`;
+
+const STContainerTheAnswer = styled.div`
+  background-color: #ffffd4;
+  width: 500px;
+  height: 120px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+`;
+
+const STTheAnswerParagraph = styled.p`
+  color: black;
+  font-family: "Recursive", sans-serif;
+  font-size: 18px;
+  margin-left: 15px;
+  margin-top: 10px;
+`;
+
+const STDivButtonSituation = styled.div`
+  margin-bottom: 10px;
+  height: 38px;
+  display: flex;
+  flex-direction: row;
+`;
+
+const STButtonSituation1 = styled.button`
+  border: none;
+  background-color: #ff3030;
+  color: #ffffff;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 5px;
+  width: 85px;
+  height: 38px;
+`;
+
+const STButtonSituation2 = styled.button`
+  border: none;
+  background-color: #ff922e;
+  color: #ffffff;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 5px;
+  width: 85px;
+  height: 38px;
+`;
+
+const STButtonSituation3 = styled.button`
+  border: none;
+  background-color: #2fbe34;
+  color: #ffffff;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 5px;
+  width: 85px;
+  height: 38px;
 `;

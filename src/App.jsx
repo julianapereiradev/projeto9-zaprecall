@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import cards from "./cards";
 import logo from "./assets/logo.png";
 import Question from "./components/Question";
 
 export default function App() {
+  
+  const [contagem, setContagem] = useState(0);
+
   return (
     <STContainer>
       <STContainerLogo>
@@ -19,12 +22,14 @@ export default function App() {
               id={card.id}
               question={card.question}
               answer={card.answer}
+              contagem={contagem}
+              setContagem={setContagem}
             />
           );
         })}
       </STContainerListQuestions>
       <STFooterContainer>
-        <STFooterParagraph> 0/8 CONCLUÍDOS</STFooterParagraph>
+        <STFooterParagraph>{contagem}/8 CONCLUÍDOS</STFooterParagraph>
       </STFooterContainer>
     </STContainer>
   );
@@ -64,8 +69,7 @@ const STLogoParagraph = styled.p`
 
 const STContainerListQuestions = styled.div`
   width: 100%;
-  height: 100vh;
-  margin-top: 50px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
