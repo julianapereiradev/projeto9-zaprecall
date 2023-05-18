@@ -1,17 +1,40 @@
 import styled from "styled-components";
 import setaplay from "../assets/seta_play.png";
+import { useState } from "react";
 
 export default function Question(props) {
   const { id, question, answer } = props;
+  const [displayTela1, setDisplayTela1] = useState(true);
+  const [displayTela2, setDisplayTela2] = useState(false);
 
-  return (
-    <STContainerItemQuestion>
-      <STPerguntaParagraph>Pergunta {id}</STPerguntaParagraph>
-      <STButtonSetaPlay>
-        <STImagePlay src={setaplay}></STImagePlay>
-      </STButtonSetaPlay>
-    </STContainerItemQuestion>
-  );
+
+  if (displayTela1 === true) {
+    return (
+      <STContainerItemQuestion>
+        <STPerguntaParagraph>Pergunta {id}</STPerguntaParagraph>
+        <STButtonSetaPlay onClick={() => TheQuestion(id)}>
+          <STImagePlay src={setaplay}></STImagePlay>
+        </STButtonSetaPlay>
+      </STContainerItemQuestion>
+    );
+  }
+
+  function TheQuestion(idQuestion) {
+    //alert(`O idQuestion é ${idQuestion}`);
+    setDisplayTela1(false);
+    setDisplayTela2(true);
+  }
+
+  if (displayTela2 === true) {
+    return (
+      <>
+        <p>{`Questao de numero ${id}`}</p>
+        <p>{` A Questao é: ${question}`}</p>
+      </>
+    );
+  }
+
+
 }
 
 const STContainerItemQuestion = styled.div`
@@ -30,7 +53,7 @@ const STContainerItemQuestion = styled.div`
 
 const STPerguntaParagraph = styled.p`
   color: black;
-  font-family: 'Recursive', sans-serif;
+  font-family: "Recursive", sans-serif;
   font-weight: bold;
   font-size: 18px;
   margin: 15px;
@@ -42,7 +65,7 @@ const STImagePlay = styled.img`
 `;
 
 const STButtonSetaPlay = styled.button`
-   border: none;
-   background-color: #FFFFFF;
-   cursor: pointer;
-`
+  border: none;
+  background-color: #ffffff;
+  cursor: pointer;
+`;

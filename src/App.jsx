@@ -15,6 +15,7 @@ export default function App() {
         {cards.map((card) => {
           return (
             <Question
+              key={card.id}
               id={card.id}
               question={card.question}
               answer={card.answer}
@@ -57,7 +58,7 @@ const STLogo = styled.img`
 const STLogoParagraph = styled.p`
   font-size: 36px;
   color: #ffffff;
-  font-family: 'Righteous', cursive;
+  font-family: "Righteous", cursive;
   margin-left: 10px;
 `;
 
@@ -82,7 +83,7 @@ const STFooterContainer = styled.div`
 
 const STFooterParagraph = styled.p`
   color: black;
-  font-family: 'Recursive', sans-serif;
+  font-family: "Recursive", sans-serif;
   font-size: 18px;
   margin: 20px 0px;
 `;
