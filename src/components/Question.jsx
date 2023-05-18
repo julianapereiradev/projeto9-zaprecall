@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import setaplay from "../assets/seta_play.png";
 import setavirar from "../assets/seta_virar.png";
+import certo from "../assets/icone_certo.png";
+import quase from "../assets/icone_quase.png";
+import erro from "../assets/icone_erro.png";
 import { useState } from "react";
 
 export default function Question(props) {
@@ -9,6 +12,7 @@ export default function Question(props) {
   const [displayTela2, setDisplayTela2] = useState(false);
   const [displayTela3, setDisplayTela3] = useState(false);
   const [displayTela4, setDisplayTela4] = useState(false);
+  const [iconButtonSituation, setIconButtonSituation] = useState();
 
   if (displayTela1 === true) {
     return (
@@ -26,6 +30,7 @@ export default function Question(props) {
     setDisplayTela1(false);
     setDisplayTela2(true);
     setDisplayTela3(false);
+    setDisplayTela4(false);
   }
 
   if (displayTela2 === true) {
@@ -41,9 +46,11 @@ export default function Question(props) {
 
   function TheAnswer(idAnswer) {
     alert(`O idAnswer é ${idAnswer}`);
+    console.log("o que ta vindo em idAnswer", idAnswer);
     setDisplayTela1(false);
     setDisplayTela2(false);
     setDisplayTela3(true);
+    setDisplayTela4(false);
   }
 
   if (displayTela3 === true) {
@@ -51,13 +58,13 @@ export default function Question(props) {
       <STContainerTheAnswer>
         <STTheAnswerParagraph>{answer}</STTheAnswerParagraph>
         <STDivButtonSituation>
-          <STButtonSituation1 onClick={() => TheSituationButtons(id)}>
+          <STButtonSituation1 onClick={() => TheSituationButtons("Erro")}>
             Não lembrei
           </STButtonSituation1>
-          <STButtonSituation2 onClick={() => TheSituationButtons(id)}>
+          <STButtonSituation2 onClick={() => TheSituationButtons("Quase")}>
             Quase não lembrei
           </STButtonSituation2>
-          <STButtonSituation3 onClick={() => TheSituationButtons(id)}>
+          <STButtonSituation3 onClick={() => TheSituationButtons("Certo")}>
             Zap!
           </STButtonSituation3>
         </STDivButtonSituation>
@@ -65,30 +72,32 @@ export default function Question(props) {
     );
   }
 
-  function TheSituationButtons(idSituation) {
-    alert(`O idSituationB é ${idSituation}`);
+  function TheSituationButtons(nameButton) {
     setDisplayTela1(false);
     setDisplayTela2(false);
     setDisplayTela3(false);
     setDisplayTela4(true);
+
+    if (nameButton === "Erro") {
+      setIconButtonSituation(erro);
+    } else if (nameButton === "Quase") {
+      setIconButtonSituation(quase);
+    } else if (nameButton === "Certo") {
+      setIconButtonSituation(certo);
+    }
+
     let total = contagem + 1;
     setContagem(total);
   }
 
   if (displayTela4 === true) {
     return (
-      <div
-        style={{
-          backgroundColor: "white",
-          border: "4px solid black",
-          width: "500px",
-          height: "70px",
-        }}
-      >
-        <p>{`PERGUNTA DE NUMERO ${id} AQUI`}</p>
-        <p>Colocar que aumentou numero </p>
-        <p>Colocar que fica riscado </p>
-      </div>
+      <STContainerFinishQuestion>
+        <STFinishQuestionParagraph>Pergunta {id}</STFinishQuestionParagraph>
+        <STFinishQuestionImage
+          src={iconButtonSituation}
+        ></STFinishQuestionImage>
+      </STContainerFinishQuestion>
     );
   }
 }
@@ -218,4 +227,31 @@ const STButtonSituation3 = styled.button`
   border-radius: 5px;
   width: 85px;
   height: 38px;
+`;
+
+const STContainerFinishQuestion = styled.div`
+  background-color: #ffffff;
+  width: 500px;
+  height: 70px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+`;
+
+const STFinishQuestionParagraph = styled.p`
+  color: #8c00ff;
+  font-family: "Recursive", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 15px;
+`;
+
+const STFinishQuestionImage = styled.img`
+  width: 20px;
+  margin: 20px;
 `;
