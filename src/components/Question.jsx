@@ -14,12 +14,13 @@ export default function Question(props) {
   const [displayTela4, setDisplayTela4] = useState(false);
   const [iconButtonSituation, setIconButtonSituation] = useState();
   const [colorFinishQuestionParagraph, setColorFinishQuestionParagraph] = useState("#000000");
+  const [dataTest, setDataTest] = useState("")
 
   if (displayTela1 === true) {
     return (
-      <STContainerItemQuestion>
-        <STPerguntaParagraph>Pergunta {id}</STPerguntaParagraph>
-        <STButtonSetaPlay onClick={() => TheQuestion(id)}>
+      <STContainerItemQuestion data-test="flashcard">
+        <STPerguntaParagraph data-test="flashcard-text">Pergunta {id}</STPerguntaParagraph>
+        <STButtonSetaPlay data-test="play-btn" onClick={() => TheQuestion(id)}>
           <STImagePlay src={setaplay}></STImagePlay>
         </STButtonSetaPlay>
       </STContainerItemQuestion>
@@ -36,8 +37,8 @@ export default function Question(props) {
   if (displayTela2 === true) {
     return (
       <STContainerTheQuestion>
-        <STTheQuestionParagraph>{question}</STTheQuestionParagraph>
-        <STButtonSetaVirar onClick={() => TheAnswer(id)}>
+        <STTheQuestionParagraph data-test="flashcard-text">{question}</STTheQuestionParagraph>
+        <STButtonSetaVirar data-test="turn-btn" onClick={() => TheAnswer(id)}>
           <STImageVirar src={setavirar}></STImageVirar>
         </STButtonSetaVirar>
       </STContainerTheQuestion>
@@ -54,15 +55,15 @@ export default function Question(props) {
   if (displayTela3 === true) {
     return (
       <STContainerTheAnswer>
-        <STTheAnswerParagraph>{answer}</STTheAnswerParagraph>
+        <STTheAnswerParagraph data-test="flashcard-text">{answer}</STTheAnswerParagraph>
         <STDivButtonSituation>
-          <STButtonSituation1 onClick={() => TheSituationButtons("Erro")}>
+          <STButtonSituation1 data-test="no-btn" onClick={() => TheSituationButtons("Erro")}>
             Não lembrei
           </STButtonSituation1>
-          <STButtonSituation2 onClick={() => TheSituationButtons("Quase")}>
+          <STButtonSituation2 data-test="partial-btn" onClick={() => TheSituationButtons("Quase")}>
             Quase não lembrei
           </STButtonSituation2>
-          <STButtonSituation3 onClick={() => TheSituationButtons("Certo")}>
+          <STButtonSituation3 data-test="zap-btn" onClick={() => TheSituationButtons("Certo")}>
             Zap!
           </STButtonSituation3>
         </STDivButtonSituation>
@@ -78,12 +79,15 @@ export default function Question(props) {
 
     if (nameButton === "Erro") {
       setIconButtonSituation(erro);
+      setDataTest("no-icon")
       setColorFinishQuestionParagraph('#FF3030')
     } else if (nameButton === "Quase") {
       setIconButtonSituation(quase);
+      setDataTest("partial-icon")
       setColorFinishQuestionParagraph('#FF922E')
     } else if (nameButton === "Certo") {
       setIconButtonSituation(certo);
+      setDataTest("zap-icon")
       setColorFinishQuestionParagraph('#2FBE34')
     }
 
@@ -94,8 +98,9 @@ export default function Question(props) {
   if (displayTela4 === true) {
     return (
       <STContainerFinishQuestion>
-        <STFinishQuestionParagraph colorFinish={colorFinishQuestionParagraph}>Pergunta {id}</STFinishQuestionParagraph>
-        <STFinishQuestionImage
+        <STFinishQuestionParagraph data-test="flashcard-text" colorFinish={colorFinishQuestionParagraph}>Pergunta {id}</STFinishQuestionParagraph>
+        <STFinishQuestionImage 
+          data-test={dataTest}
           src={iconButtonSituation}
         ></STFinishQuestionImage>
       </STContainerFinishQuestion>

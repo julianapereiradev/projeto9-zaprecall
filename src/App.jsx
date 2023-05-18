@@ -29,7 +29,7 @@ export default function App() {
         })}
       </STContainerListQuestions>
       <STFooterContainer>
-        <STFooterParagraph>{contagem}/8 CONCLUÍDOS</STFooterParagraph>
+        <STFooterParagraph data-test="footer">{contagem}/8 CONCLUÍDOS</STFooterParagraph>
       </STFooterContainer>
     </STContainer>
   );
