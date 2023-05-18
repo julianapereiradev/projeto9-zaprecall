@@ -20,9 +20,7 @@ export default function Question(props) {
     return (
       <STContainerItemQuestion data-test="flashcard">
         <STPerguntaParagraph data-test="flashcard-text">Pergunta {id}</STPerguntaParagraph>
-        <STButtonSetaPlay data-test="play-btn" onClick={() => TheQuestion(id)}>
-          <STImagePlay src={setaplay}></STImagePlay>
-        </STButtonSetaPlay>
+          <STImagePlay src={setaplay} data-test="play-btn" onClick={() => TheQuestion(id)}></STImagePlay>
       </STContainerItemQuestion>
     );
   }
@@ -38,9 +36,7 @@ export default function Question(props) {
     return (
       <STContainerTheQuestion>
         <STTheQuestionParagraph data-test="flashcard-text">{question}</STTheQuestionParagraph>
-        <STButtonSetaVirar data-test="turn-btn" onClick={() => TheAnswer(id)}>
-          <STImageVirar src={setavirar}></STImageVirar>
-        </STButtonSetaVirar>
+          <STImageVirar data-test="turn-btn" onClick={() => TheAnswer(id)} src={setavirar}></STImageVirar>
       </STContainerTheQuestion>
     );
   }
@@ -135,12 +131,6 @@ const STImagePlay = styled.img`
   margin: 15px;
 `;
 
-const STButtonSetaPlay = styled.button`
-  border: none;
-  background-color: #ffffff;
-  cursor: pointer;
-`;
-
 const STContainerTheQuestion = styled.div`
   background-color: #ffffd4;
   width: 500px;
@@ -160,12 +150,6 @@ const STTheQuestionParagraph = styled.p`
   font-family: "Recursive", sans-serif;
   font-size: 18px;
   margin-left: 15px;
-`;
-
-const STButtonSetaVirar = styled.button`
-  border: none;
-  background-color: #ffffd4;
-  cursor: pointer;
 `;
 
 const STImageVirar = styled.img`
