@@ -13,6 +13,7 @@ export default function Question(props) {
   const [displayTela3, setDisplayTela3] = useState(false);
   const [displayTela4, setDisplayTela4] = useState(false);
   const [iconButtonSituation, setIconButtonSituation] = useState();
+  const [colorFinishQuestionParagraph, setColorFinishQuestionParagraph] = useState("#000000");
 
   if (displayTela1 === true) {
     return (
@@ -26,7 +27,6 @@ export default function Question(props) {
   }
 
   function TheQuestion(idQuestion) {
-    alert(`O idQuestion é ${idQuestion}`);
     setDisplayTela1(false);
     setDisplayTela2(true);
     setDisplayTela3(false);
@@ -45,8 +45,6 @@ export default function Question(props) {
   }
 
   function TheAnswer(idAnswer) {
-    alert(`O idAnswer é ${idAnswer}`);
-    console.log("o que ta vindo em idAnswer", idAnswer);
     setDisplayTela1(false);
     setDisplayTela2(false);
     setDisplayTela3(true);
@@ -80,10 +78,13 @@ export default function Question(props) {
 
     if (nameButton === "Erro") {
       setIconButtonSituation(erro);
+      setColorFinishQuestionParagraph('#FF3030')
     } else if (nameButton === "Quase") {
       setIconButtonSituation(quase);
+      setColorFinishQuestionParagraph('#FF922E')
     } else if (nameButton === "Certo") {
       setIconButtonSituation(certo);
+      setColorFinishQuestionParagraph('#2FBE34')
     }
 
     let total = contagem + 1;
@@ -93,7 +94,7 @@ export default function Question(props) {
   if (displayTela4 === true) {
     return (
       <STContainerFinishQuestion>
-        <STFinishQuestionParagraph>Pergunta {id}</STFinishQuestionParagraph>
+        <STFinishQuestionParagraph colorFinish={colorFinishQuestionParagraph}>Pergunta {id}</STFinishQuestionParagraph>
         <STFinishQuestionImage
           src={iconButtonSituation}
         ></STFinishQuestionImage>
@@ -244,11 +245,12 @@ const STContainerFinishQuestion = styled.div`
 `;
 
 const STFinishQuestionParagraph = styled.p`
-  color: #8c00ff;
+  color: ${ (props) => props.colorFinish };
   font-family: "Recursive", sans-serif;
   font-weight: bold;
   font-size: 18px;
   margin: 15px;
+  text-decoration: line-through;
 `;
 
 const STFinishQuestionImage = styled.img`
