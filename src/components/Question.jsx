@@ -34,7 +34,7 @@ export default function Question(props) {
 
   if (displayTela2 === true) {
     return (
-      <STContainerTheQuestion>
+      <STContainerTheQuestion data-test="flashcard">
         <STTheQuestionParagraph data-test="flashcard-text">{question}</STTheQuestionParagraph>
           <STImageVirar data-test="turn-btn" onClick={() => TheAnswer(id)} src={setavirar}></STImageVirar>
       </STContainerTheQuestion>
@@ -50,7 +50,7 @@ export default function Question(props) {
 
   if (displayTela3 === true) {
     return (
-      <STContainerTheAnswer>
+      <STContainerTheAnswer data-test="flashcard">
         <STTheAnswerParagraph data-test="flashcard-text">{answer}</STTheAnswerParagraph>
         <STDivButtonSituation>
           <STButtonSituation1 data-test="no-btn" onClick={() => TheSituationButtons("Erro")}>
@@ -93,7 +93,7 @@ export default function Question(props) {
 
   if (displayTela4 === true) {
     return (
-      <STContainerFinishQuestion>
+      <STContainerFinishQuestion data-test="flashcard">
         <STFinishQuestionParagraph data-test="flashcard-text" colorFinish={colorFinishQuestionParagraph}>Pergunta {id}</STFinishQuestionParagraph>
         <STFinishQuestionImage 
           data-test={dataTest}
