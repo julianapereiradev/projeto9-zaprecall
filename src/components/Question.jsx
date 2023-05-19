@@ -150,11 +150,15 @@ const STTheQuestionParagraph = styled.p`
   font-family: "Recursive", sans-serif;
   font-size: 18px;
   margin-left: 15px;
+  align-self: flex-start;
+  margin-top: 18px;
 `;
 
 const STImageVirar = styled.img`
   width: 20px;
   margin: 20px;
+  align-self: flex-end;
+  margin-bottom: 18px;
 `;
 
 const STContainerTheAnswer = styled.div`
