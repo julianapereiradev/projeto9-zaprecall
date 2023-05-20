@@ -8,101 +8,118 @@ import { useState } from "react";
 
 export default function Question(props) {
   const { id, question, answer, contagem, setContagem } = props;
-  const [displayTela1, setDisplayTela1] = useState(true);
-  const [displayTela2, setDisplayTela2] = useState(false);
-  const [displayTela3, setDisplayTela3] = useState(false);
-  const [displayTela4, setDisplayTela4] = useState(false);
   const [iconButtonSituation, setIconButtonSituation] = useState();
-  const [colorFinishQuestionParagraph, setColorFinishQuestionParagraph] = useState("#000000");
-  const [dataTest, setDataTest] = useState("")
-
-  if (displayTela1 === true) {
-    return (
-      <STContainerItemQuestion data-test="flashcard">
-        <STPerguntaParagraph data-test="flashcard-text">Pergunta {id}</STPerguntaParagraph>
-          <STImagePlay src={setaplay} data-test="play-btn" onClick={() => TheQuestion(id)}></STImagePlay>
-      </STContainerItemQuestion>
-    );
-  }
+  const [colorFinishQuestionParagraph, setColorFinishQuestionParagraph] =
+    useState("#000000");
+  const [dataTest, setDataTest] = useState("");
+  const [mostrando, setMostrando] = useState("displayTela1");
 
   function TheQuestion(idQuestion) {
-    setDisplayTela1(false);
-    setDisplayTela2(true);
-    setDisplayTela3(false);
-    setDisplayTela4(false);
-  }
-
-  if (displayTela2 === true) {
-    return (
-      <STContainerTheQuestion data-test="flashcard">
-        <STTheQuestionParagraph data-test="flashcard-text">{question}</STTheQuestionParagraph>
-          <STImageVirar data-test="turn-btn" onClick={() => TheAnswer(id)} src={setavirar}></STImageVirar>
-      </STContainerTheQuestion>
-    );
+    setMostrando("displayTela2");
   }
 
   function TheAnswer(idAnswer) {
-    setDisplayTela1(false);
-    setDisplayTela2(false);
-    setDisplayTela3(true);
-    setDisplayTela4(false);
-  }
-
-  if (displayTela3 === true) {
-    return (
-      <STContainerTheAnswer data-test="flashcard">
-        <STTheAnswerParagraph data-test="flashcard-text">{answer}</STTheAnswerParagraph>
-        <STDivButtonSituation>
-          <STButtonSituation1 data-test="no-btn" onClick={() => TheSituationButtons("Erro")}>
-            Não lembrei
-          </STButtonSituation1>
-          <STButtonSituation2 data-test="partial-btn" onClick={() => TheSituationButtons("Quase")}>
-            Quase não lembrei
-          </STButtonSituation2>
-          <STButtonSituation3 data-test="zap-btn" onClick={() => TheSituationButtons("Certo")}>
-            Zap!
-          </STButtonSituation3>
-        </STDivButtonSituation>
-      </STContainerTheAnswer>
-    );
+    setMostrando("displayTela3");
   }
 
   function TheSituationButtons(nameButton) {
-    setDisplayTela1(false);
-    setDisplayTela2(false);
-    setDisplayTela3(false);
-    setDisplayTela4(true);
+    setMostrando("displayTela4");
 
     if (nameButton === "Erro") {
       setIconButtonSituation(erro);
-      setDataTest("no-icon")
-      setColorFinishQuestionParagraph('#FF3030')
+      setDataTest("no-icon");
+      setColorFinishQuestionParagraph("#FF3030");
     } else if (nameButton === "Quase") {
       setIconButtonSituation(quase);
-      setDataTest("partial-icon")
-      setColorFinishQuestionParagraph('#FF922E')
+      setDataTest("partial-icon");
+      setColorFinishQuestionParagraph("#FF922E");
     } else if (nameButton === "Certo") {
       setIconButtonSituation(certo);
-      setDataTest("zap-icon")
-      setColorFinishQuestionParagraph('#2FBE34')
+      setDataTest("zap-icon");
+      setColorFinishQuestionParagraph("#2FBE34");
     }
 
     let total = contagem + 1;
     setContagem(total);
   }
 
-  if (displayTela4 === true) {
-    return (
-      <STContainerFinishQuestion data-test="flashcard">
-        <STFinishQuestionParagraph data-test="flashcard-text" colorFinish={colorFinishQuestionParagraph}>Pergunta {id}</STFinishQuestionParagraph>
-        <STFinishQuestionImage 
-          data-test={dataTest}
-          src={iconButtonSituation}
-        ></STFinishQuestionImage>
-      </STContainerFinishQuestion>
-    );
-  }
+  return (
+    <STDivPrincipal>
+      {mostrando === "displayTela1" && (
+        <STContainerItemQuestion data-test="flashcard">
+          <STPerguntaParagraph data-test="flashcard-text">
+            Pergunta {id}
+          </STPerguntaParagraph>
+          <STImagePlay
+            src={setaplay}
+            data-test="play-btn"
+            onClick={() => TheQuestion(id)}
+          ></STImagePlay>
+        </STContainerItemQuestion>
+      )}
+
+      {mostrando === "displayTela2" && (
+        <STContainerTheQuestion data-test="flashcard">
+          <STTheQuestionParagraph data-test="flashcard-text">
+            {question}
+          </STTheQuestionParagraph>
+          <STImageVirar
+            data-test="turn-btn"
+            onClick={() => TheAnswer(id)}
+            src={setavirar}
+          ></STImageVirar>
+        </STContainerTheQuestion>
+      )}
+
+      {mostrando === "displayTela3" && (
+        <STContainerTheAnswer data-test="flashcard">
+          <STTheAnswerParagraph data-test="flashcard-text">
+            {answer}
+          </STTheAnswerParagraph>
+          <STDivButtonSituation>
+            <STButtonSituation1
+              data-test="no-btn"
+              onClick={() => TheSituationButtons("Erro")}
+            >
+              Não lembrei
+            </STButtonSituation1>
+            <STButtonSituation2
+              data-test="partial-btn"
+              onClick={() => TheSituationButtons("Quase")}
+            >
+              Quase não lembrei
+            </STButtonSituation2>
+            <STButtonSituation3
+              data-test="zap-btn"
+              onClick={() => TheSituationButtons("Certo")}
+            >
+              Zap!
+            </STButtonSituation3>
+          </STDivButtonSituation>
+        </STContainerTheAnswer>
+      )}
+
+      {mostrando === "displayTela4" && (
+        <STContainerFinishQuestion data-test="flashcard">
+          <STFinishQuestionParagraph
+            data-test="flashcard-text"
+            colorFinish={colorFinishQuestionParagraph}
+          >
+            Pergunta {id}
+          </STFinishQuestionParagraph>
+          <STFinishQuestionImage
+            data-test={dataTest}
+            src={iconButtonSituation}
+          ></STFinishQuestionImage>
+        </STContainerFinishQuestion>
+      )}
+    </STDivPrincipal>
+  );
 }
+
+const STDivPrincipal = styled.div`
+  background-color: #fb6b6b;
+`;
 
 const STContainerItemQuestion = styled.div`
   background-color: #ffffff;
@@ -238,7 +255,7 @@ const STContainerFinishQuestion = styled.div`
 `;
 
 const STFinishQuestionParagraph = styled.p`
-  color: ${ (props) => props.colorFinish };
+  color: ${(props) => props.colorFinish};
   font-family: "Recursive", sans-serif;
   font-weight: bold;
   font-size: 18px;
