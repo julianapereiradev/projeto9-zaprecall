@@ -232,6 +232,7 @@ const STButtonSituation1 = styled.button`
   border-radius: 5px;
   width: 85px;
   height: 38px;
+  font-family: "Recursive", sans-serif;
 `;
 
 const STButtonSituation2 = styled.button`
@@ -243,6 +244,7 @@ const STButtonSituation2 = styled.button`
   border-radius: 5px;
   width: 85px;
   height: 38px;
+  font-family: "Recursive", sans-serif;
 `;
 
 const STButtonSituation3 = styled.button`
@@ -254,6 +256,7 @@ const STButtonSituation3 = styled.button`
   border-radius: 5px;
   width: 85px;
   height: 38px;
+  font-family: "Recursive", sans-serif;
 `;
 
 const STContainerFinishQuestion = styled.div`
