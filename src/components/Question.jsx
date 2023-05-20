@@ -133,6 +133,9 @@ const STContainerItemQuestion = styled.div`
   align-items: center;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  @media (max-width: 520px) {
+    width: 300px;
+  }
 `;
 
 const STPerguntaParagraph = styled.p`
@@ -160,6 +163,9 @@ const STContainerTheQuestion = styled.div`
   align-items: center;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  @media (max-width: 520px) {
+    width: 300px;
+  }
 `;
 
 const STTheQuestionParagraph = styled.p`
@@ -190,6 +196,10 @@ const STContainerTheAnswer = styled.div`
   align-items: center;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  @media (max-width: 520px) {
+    width: 300px;
+    height: 140px;
+  }
 `;
 
 const STTheAnswerParagraph = styled.p`
@@ -198,6 +208,12 @@ const STTheAnswerParagraph = styled.p`
   font-size: 18px;
   margin-left: 15px;
   margin-top: 10px;
+  align-self: flex-start;
+  margin-top: 18px;
+  @media (max-width: 520px) {
+    margin-right: 10px;
+    margin-top: 15px;
+  }
 `;
 
 const STDivButtonSituation = styled.div`
@@ -252,6 +268,9 @@ const STContainerFinishQuestion = styled.div`
   align-items: center;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  @media (max-width: 520px) {
+    width: 300px;
+  }
 `;
 
 const STFinishQuestionParagraph = styled.p`
