@@ -107,19 +107,15 @@ const STFooterContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const STFooterCounter = styled.p`
-  color: black;
   font-family: "Recursive", sans-serif;
   font-size: 18px;
-  margin-bottom: 10px;
 `;
 
 const STFooterIconsSequency = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 10px;
 `;
 
 const STFooterIconsImage = styled.img`
