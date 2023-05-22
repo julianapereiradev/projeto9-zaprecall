@@ -8,6 +8,7 @@ export default function ListQuestions(props) {
 
   const [contagem, setContagem] = useState(0);
   const [emoji, setEmoji] = useState([]);
+  const [emojiDataTest, setEmojiDataTest] = useState([]);
 
   return (
     <>
@@ -29,6 +30,8 @@ export default function ListQuestions(props) {
                   setContagem={setContagem}
                   emoji={emoji}
                   setEmoji={setEmoji}
+                  emojiDataTest={emojiDataTest}
+                  setEmojiDataTest={setEmojiDataTest}
                 />
               );
             })}
@@ -38,11 +41,16 @@ export default function ListQuestions(props) {
               {contagem}/8 CONCLUÍDOS
             </STFooterCounter>
             <STFooterIconsSequency>
-              {emoji.map((item) => (
-                <>
-                  <STFooterIconsImage src={item}/>
-                </>
-              ))}
+              {emoji.map((item, index) => {
+
+                const emojiData = emojiDataTest[index];
+                
+                return (
+                  <>
+                    <STFooterIconsImage src={item} data-test={emojiData} />
+                  </>
+                );
+              })}
             </STFooterIconsSequency>
           </STFooterContainer>
         </STContainer>

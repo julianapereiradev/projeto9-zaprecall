@@ -7,7 +7,7 @@ import erro from "../assets/icone_erro.png";
 import { useState } from "react";
 
 export default function Question(props) {
-  const { id, question, answer, contagem, setContagem, emoji, setEmoji } = props;
+  const { id, question, answer, contagem, setContagem, emoji, setEmoji, emojiDataTest, setEmojiDataTest } = props;
   
   const [iconButtonSituation, setIconButtonSituation] = useState();
   const [colorFinishQuestionParagraph, setColorFinishQuestionParagraph] =
@@ -15,6 +15,7 @@ export default function Question(props) {
   const [dataTest, setDataTest] = useState("");
   const [mostrando, setMostrando] = useState("displayTela1");
 
+  
   function TheQuestion(idQuestion) {
     setMostrando("displayTela2");
   }
@@ -27,28 +28,33 @@ export default function Question(props) {
     setMostrando("displayTela4");
 
     let novo = [...emoji]
+    let novoDataTest = [...emojiDataTest]
 
     if (nameButton === "Erro") {
       setIconButtonSituation(erro);
       setDataTest("no-icon");
       setColorFinishQuestionParagraph("#FF3030");
       novo.push(erro)
+      novoDataTest.push("no-icon")
     } else if (nameButton === "Quase") {
       setIconButtonSituation(quase);
       setDataTest("partial-icon");
       setColorFinishQuestionParagraph("#FF922E");
       novo.push(quase)
+      novoDataTest.push("partial-icon")
     } else if (nameButton === "Certo") {
       setIconButtonSituation(certo);
       setDataTest("zap-icon");
       setColorFinishQuestionParagraph("#2FBE34");
       novo.push(certo)
+      novoDataTest.push("zap-icon")
     }
 
     let total = contagem + 1;
     setContagem(total);
 
     setEmoji(novo)
+    setEmojiDataTest(novoDataTest)
   }
 
   return (
