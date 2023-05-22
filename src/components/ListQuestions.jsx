@@ -36,8 +36,8 @@ export default function ListQuestions(props) {
               );
             })}
           </STContainerListQuestions>
-          <STFooterContainer>
-            <STFooterCounter data-test="footer">
+          <STFooterContainer data-test="footer">
+            <STFooterCounter>
               {contagem}/8 CONCLUÍDOS
             </STFooterCounter>
             <STFooterIconsSequency>
