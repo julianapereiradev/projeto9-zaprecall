@@ -7,7 +7,8 @@ import erro from "../assets/icone_erro.png";
 import { useState } from "react";
 
 export default function Question(props) {
-  const { id, question, answer, contagem, setContagem } = props;
+  const { id, question, answer, contagem, setContagem, emoji, setEmoji } = props;
+  
   const [iconButtonSituation, setIconButtonSituation] = useState();
   const [colorFinishQuestionParagraph, setColorFinishQuestionParagraph] =
     useState("#000000");
@@ -25,22 +26,29 @@ export default function Question(props) {
   function TheSituationButtons(nameButton) {
     setMostrando("displayTela4");
 
+    let novo = [...emoji]
+
     if (nameButton === "Erro") {
       setIconButtonSituation(erro);
       setDataTest("no-icon");
       setColorFinishQuestionParagraph("#FF3030");
+      novo.push(erro)
     } else if (nameButton === "Quase") {
       setIconButtonSituation(quase);
       setDataTest("partial-icon");
       setColorFinishQuestionParagraph("#FF922E");
+      novo.push(quase)
     } else if (nameButton === "Certo") {
       setIconButtonSituation(certo);
       setDataTest("zap-icon");
       setColorFinishQuestionParagraph("#2FBE34");
+      novo.push(certo)
     }
 
     let total = contagem + 1;
     setContagem(total);
+
+    setEmoji(novo)
   }
 
   return (
@@ -286,6 +294,6 @@ const STFinishQuestionParagraph = styled.p`
 `;
 
 const STFinishQuestionImage = styled.img`
-  width: 20px;
-  margin: 20px;
+  width: 23px;
+  margin: 23px;
 `;

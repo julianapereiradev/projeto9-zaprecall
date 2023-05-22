@@ -7,6 +7,7 @@ export default function ListQuestions(props) {
   const { telaInicial, cards } = props;
 
   const [contagem, setContagem] = useState(0);
+  const [emoji, setEmoji] = useState([]);
 
   return (
     <>
@@ -26,14 +27,23 @@ export default function ListQuestions(props) {
                   answer={card.answer}
                   contagem={contagem}
                   setContagem={setContagem}
+                  emoji={emoji}
+                  setEmoji={setEmoji}
                 />
               );
             })}
           </STContainerListQuestions>
           <STFooterContainer>
-            <STFooterParagraph data-test="footer">
+            <STFooterCounter data-test="footer">
               {contagem}/8 CONCLUÍDOS
-            </STFooterParagraph>
+            </STFooterCounter>
+            <STFooterIconsSequency>
+              {emoji.map((item) => (
+                <>
+                  <STFooterIconsImage src={item}/>
+                </>
+              ))}
+            </STFooterIconsSequency>
           </STFooterContainer>
         </STContainer>
       ) : (
@@ -88,14 +98,26 @@ const STFooterContainer = styled.div`
   height: 80px;
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const STFooterParagraph = styled.p`
+const STFooterCounter = styled.p`
   color: black;
   font-family: "Recursive", sans-serif;
   font-size: 18px;
-  margin: 20px 0px;
+  margin-bottom: 10px;
+`;
+
+const STFooterIconsSequency = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const STFooterIconsImage = styled.img`
+  width: 23px;
+  height: 23px;
+  margin-left: 5px;
 `;
