@@ -37,9 +37,7 @@ export default function ListQuestions(props) {
             })}
           </STContainerListQuestions>
           <STFooterContainer data-test="footer">
-            <STFooterCounter>
               {contagem}/8 CONCLUÍDOS
-            </STFooterCounter>
             <STFooterIconsSequency>
               {emoji.map((item, index) => {
 
