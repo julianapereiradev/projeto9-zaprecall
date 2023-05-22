@@ -107,8 +107,6 @@ const STFooterContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: black;
-  font-family: "Recursive", sans-serif;
   font-size: 18px;
 `;
 
